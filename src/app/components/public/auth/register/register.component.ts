@@ -18,6 +18,45 @@ export class RegisterComponent implements OnInit {
         placeholder: "Enter first name",
         required: true
       }
+    },
+    {
+      key: "lastName",
+      type: "input",
+      templateOptions: {
+        label: "Last Name",
+        placeholder: "Enter last name",
+        required: true
+      }
+    },
+    {
+      key: "email",
+      type: "input",
+      templateOptions: {
+        label: "Email",
+        placeholder: "Enter email address",
+        type: "email",
+        required: true
+      }
+    },
+    {
+      key: "password",
+      type: "input",
+      templateOptions: {
+        label: "Password",
+        placeholder: "Enter password",
+        type: "password",
+        required: true
+      }
+    },
+    {
+      key: "confirmPassword",
+      type: "input",
+      templateOptions: {
+        label: "Confirm Password",
+        placeholder: "Repeat password",
+        type: "password",
+        required: true
+      }
     }
   ]
   constructor() { }
