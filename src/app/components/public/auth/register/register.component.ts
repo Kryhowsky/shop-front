@@ -8,7 +8,9 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
+
   formGroup: FormGroup = new FormGroup({})
+
   formConfig: FormlyFieldConfig[] = [
     {
       key: "firstName",
@@ -59,13 +61,13 @@ export class RegisterComponent implements OnInit {
       }
     }
   ]
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   submit(): void {
-    
   }
 
 }
