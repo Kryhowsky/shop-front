@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
       templateOptions: {
         label: "Email",
         placeholder: "Enter email address",
-        type: "email",
         required: true
       }
     },

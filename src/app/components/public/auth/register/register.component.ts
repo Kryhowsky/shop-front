@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Store } from '@ngxs/store';
+import { RegisterUserAction } from '../state/user.actions';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +38,6 @@ export class RegisterComponent implements OnInit {
       templateOptions: {
         label: "Email",
         placeholder: "Enter email address",
-        type: "email",
         required: true
       }
     },
@@ -47,7 +48,8 @@ export class RegisterComponent implements OnInit {
         label: "Password",
         placeholder: "Enter password",
         type: "password",
-        required: true
+        required: true,
+        minLength: 3
       }
     },
     {
@@ -62,12 +64,13 @@ export class RegisterComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private readonly store: Store) { }
 
   ngOnInit(): void {
   }
 
   submit(): void {
+    this.store.dispatch(new RegisterUserAction(this.formGroup.value))
   }
 
 }

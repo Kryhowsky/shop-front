@@ -12,6 +12,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PublicModule } from './components/public/public.module';
+import { NgxsModule } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { PublicModule } from './components/public/public.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    PublicModule
+    PublicModule,
+    NgxsModule.forRoot(),
+    HttpClientModule,
+    NgxsRouterPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginComponent } from './login/login.component';
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from './state/user.state';
+import { HttpClientModule } from '@angular/common/http';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -36,7 +40,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     FormlyModule,
-    FormlyMaterialModule
+    FormlyMaterialModule,
+    MatButtonModule,
+    NgxsModule.forFeature([UserState])
   ]
 })
 export class AuthModule { }
