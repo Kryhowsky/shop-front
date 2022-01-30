@@ -15,6 +15,41 @@ import { PublicModule } from './components/public/public.module';
 import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { AbstractControl } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+
+export function minLengthValidationMessages(err, field) {
+  return `Should have atleast ${field.templateOptions.minLength} characters`;
+}
+
+export function fieldMatchValidator(control: AbstractControl) {
+  const { password, confirmPassword } = control.value;
+
+  if (!confirmPassword || !password) {
+    return null;
+  }
+
+  if (confirmPassword === password) {
+    return null;
+  }
+
+  return { fieldMatch: { message: 'Passwords not matching' } };
+}
+
+export function emailValidator(control: AbstractControl) {
+  const { email } = control.value;
+  const pattern = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+  if (!email) {
+    return null;
+  }
+
+  if(pattern.test(email)) {
+    return null
+  }
+
+  return { emailValid: { message: 'Incorrect email address' } };
+}
 
 @NgModule({
   declarations: [
@@ -34,8 +69,21 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
     PublicModule,
     NgxsModule.forRoot(),
     HttpClientModule,
-    NgxsRouterPluginModule.forRoot()
+    NgxsRouterPluginModule.forRoot(),
+    FormlyModule.forRoot({
+      validators: [
+        { name: 'fieldMatch', validation: fieldMatchValidator },
+        { name: 'emailValid', validation: emailValidator }
+      ],
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+        { name: 'minlength', message: minLengthValidationMessages }
+      ],
+    }),
   ],
+  // declarations: [
+  //   AppComponent,
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })
