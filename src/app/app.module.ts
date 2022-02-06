@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { AbstractControl } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { PrivateModule } from './components/private/private.module';
 
 export function minLengthValidationMessages(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -67,9 +69,11 @@ export function emailValidator(control: AbstractControl) {
     MatIconModule,
     MatListModule,
     PublicModule,
+    PrivateModule,
     NgxsModule.forRoot(),
     HttpClientModule,
     NgxsRouterPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
     FormlyModule.forRoot({
       validators: [
         { name: 'fieldMatch', validation: fieldMatchValidator },

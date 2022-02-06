@@ -5,7 +5,22 @@ export class RegisterUserAction {
   constructor(public user: UserDto) { }
 }
 
-export class LoginUSerAction {
+export class LoginUserAction {
   static readonly type = '[User] LoginUserAction';
   constructor(public login: LoginDto) { }
+}
+
+export class LogoutUserAction {
+  static readonly type = '[User] LogoutUserAction';
+  constructor() {}
+}
+
+export class LoginFromLocalStorageAction {
+  static readonly type = '[User] LoginFromLocalStorageAction';
+  constructor() {}
+}
+
+export class GetCurrentUserAction {
+  static readonly type = '[User] GetCurrentUserAction';
+  constructor() {}
 }

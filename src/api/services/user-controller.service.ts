@@ -280,6 +280,53 @@ export class UserControllerService extends BaseService {
   }
 
   /**
+   * Path part for operation getCurrentUser
+   */
+  static readonly GetCurrentUserPath = '/api/users/current';
+
+  /**
+   * Allows to check information about logged user.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getCurrentUser()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCurrentUser$Response(params?: {
+  }): Observable<StrictHttpResponse<UserDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserControllerService.GetCurrentUserPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<UserDto>;
+      })
+    );
+  }
+
+  /**
+   * Allows to check information about logged user.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getCurrentUser$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCurrentUser(params?: {
+  }): Observable<UserDto> {
+
+    return this.getCurrentUser$Response(params).pipe(
+      map((r: StrictHttpResponse<UserDto>) => r.body as UserDto)
+    );
+  }
+
+  /**
    * Path part for operation activateUserByActivationToken
    */
   static readonly ActivateUserByActivationTokenPath = '/api/users/activate';
