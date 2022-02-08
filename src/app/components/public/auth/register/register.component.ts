@@ -11,7 +11,7 @@ import { RegisterUserAction } from '../state/user.actions';
 })
 export class RegisterComponent implements OnInit {
 
-  formGroup: FormGroup = new FormGroup({})
+  formGroup: FormGroup = new FormGroup( {} )
 
   formConfig: FormlyFieldConfig[] = [{
     validators: {

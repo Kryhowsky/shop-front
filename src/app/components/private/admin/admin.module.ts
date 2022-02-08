@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
+import { AdminProductModule } from './admin-product/admin-product.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -22,6 +27,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    AdminProductModule,
     RouterModule.forChild(routes)
   ]
 })
