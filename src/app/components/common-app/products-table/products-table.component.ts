@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { PageProductDto } from 'src/api/models';
@@ -12,6 +13,8 @@ import { GetProductsPageAction } from '../../public/product/state/product.action
 export class ProductsTableComponent implements OnInit {
 
   dataSource = []
+
+  @Input()
   displayedColumns = []
 
   @Select(state => state.product.productPage)
@@ -21,6 +24,10 @@ export class ProductsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new GetProductsPageAction(0, 10))
+  }
+
+  changePage(event: PageEvent): void {
+    this.store.dispatch(new GetProductsPageAction(event.pageIndex, event.pageSize))
   }
 
 }

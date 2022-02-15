@@ -9,10 +9,11 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductsComponent } from './products/products.component';
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { CommonAppModule } from 'src/app/components/common-app/common-app.module';
+import { AuthGuard } from '../../auth.guard';
 
 const routes: Routes = [
   {
-    path: "product",
+    path: "",
     component: AdminProductComponent,
     children: [
       {

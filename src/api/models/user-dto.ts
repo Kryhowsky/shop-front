@@ -12,4 +12,5 @@ export interface UserDto {
   lastName: string;
   password: string;
   revisionNumber?: number;
+  roles?: Array<string>;
 }

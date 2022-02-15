@@ -30,6 +30,11 @@ export class UserState {
     return userStateModel.currentUser
   }
 
+  @Selector()
+  static token(userStateModel: UserStateModel) {
+    return userStateModel.token
+  }
+
   @Action(RegisterUserAction)
   registerUser({ dispatch }: StateContext<UserStateModel>, { user }: RegisterUserAction) {
     return this.userService.saveUser({ body: user }).pipe(
