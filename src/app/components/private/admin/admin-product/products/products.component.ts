@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
+  displayedColumns: string[] = ["brand", "name", "description", "price", "quantity", "createdBy", "createdDate", "lastModifiedBy", "lastModifiedDate", "updateProduct", "deleteProduct"]
+
   constructor() { }
 
   ngOnInit(): void {

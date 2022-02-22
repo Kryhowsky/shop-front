@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +13,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     CommonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    RouterModule
   ],
   exports: [ProductsTableComponent]
 })

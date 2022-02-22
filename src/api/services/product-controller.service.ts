@@ -84,7 +84,7 @@ export class ProductControllerService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateProduct()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   updateProduct$Response(params: {
     id: number;
@@ -97,7 +97,7 @@ export class ProductControllerService extends BaseService {
     const rb = new RequestBuilder(this.rootUrl, ProductControllerService.UpdateProductPath, 'put');
     if (params) {
       rb.path('id', params.id, {});
-      rb.body(params.body, 'application/json');
+      rb.body(params.body, 'multipart/form-data');
     }
 
     return this.http.request(rb.build({
@@ -117,7 +117,7 @@ export class ProductControllerService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateProduct$Response()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   updateProduct(params: {
     id: number;
@@ -246,7 +246,7 @@ export class ProductControllerService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `saveProduct()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   saveProduct$Response(params?: {
     body?: {
@@ -257,7 +257,7 @@ export class ProductControllerService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, ProductControllerService.SaveProductPath, 'post');
     if (params) {
-      rb.body(params.body, 'application/json');
+      rb.body(params.body, 'multipart/form-data');
     }
 
     return this.http.request(rb.build({
@@ -277,7 +277,7 @@ export class ProductControllerService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `saveProduct$Response()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   saveProduct(params?: {
     body?: {

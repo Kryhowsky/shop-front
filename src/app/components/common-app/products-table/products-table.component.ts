@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { PageProductDto } from 'src/api/models';
-import { GetProductsPageAction } from '../../public/product/state/product.actions';
+import { PageProductDto, ProductDto } from 'src/api/models';
+import { DeleteProductByIdAction, GetProductsPageAction } from '../../public/product/state/product.actions';
 
 @Component({
   selector: 'app-products-table',
@@ -28,6 +28,10 @@ export class ProductsTableComponent implements OnInit {
 
   changePage(event: PageEvent): void {
     this.store.dispatch(new GetProductsPageAction(event.pageIndex, event.pageSize))
+  }
+
+  deleteProductById(productId: number): void {
+    this.store.dispatch(new DeleteProductByIdAction(productId))
   }
 
 }
