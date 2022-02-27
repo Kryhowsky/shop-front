@@ -1,1 +1,18 @@
-<p>product-details works!</p>
+<mat-card class="example-card" *ngIf="product$ | async as product">
+    <mat-card-header>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product.brand}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{product.imagePath}}">
+    <mat-card-content>
+      <p>{{product.description}}</p>
+      <p>Price: {{product.price}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <form [formGroup]="formGroup" (ngSubmit)="submit()">
+            <formly-form [fields]="formConfig" [form]="formGroup"></formly-form>
+            <button mat-raised-button color="primary" [disabled]="!formGroup.valid">Dodaj do koszyka</button>
+        </form>
+    </mat-card-actions>
+  </mat-card>
+  

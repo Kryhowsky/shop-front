@@ -10,15 +10,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonAppModule } from '../../common-app/common-app.module';
 import { NgxsModule } from '@ngxs/store';
 import { ProductState } from './state/product.state';
+import { BasketState } from './state/basket.state';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
-    path: "product",
+    path: "",
     component: ProductComponent,
     children: [
       {
-        path: "details",
+        path: "details/:id",
         component: ProductDetailsComponent
       },
       {
@@ -43,8 +45,9 @@ const routes: Routes = [
     FormlyMaterialModule,
     MatButtonModule,
     CommonAppModule,
+    MatCardModule,
     RouterModule.forChild(routes),
-    NgxsModule.forFeature([ProductState])
+    NgxsModule.forFeature([ProductState, BasketState])
   ]
 })
 export class ProductModule { }

@@ -51,6 +51,7 @@ export class UserState {
         })
         localStorage.setItem("token", response.token)
         dispatch(new GetCurrentUserAction())
+        dispatch(new Navigate(["/product/list"]))
       })
     )
   }
