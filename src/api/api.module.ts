@@ -8,6 +8,7 @@ import { UserControllerService } from './services/user-controller.service';
 import { ProductControllerService } from './services/product-controller.service';
 import { TemplateControllerService } from './services/template-controller.service';
 import { LoginControllerService } from './services/login-controller.service';
+import { BasketControllerService } from './services/basket-controller.service';
 import { HistoryControllerService } from './services/history-controller.service';
 import { FileControllerService } from './services/file-controller.service';
 import { EmailControllerService } from './services/email-controller.service';
@@ -24,6 +25,7 @@ import { EmailControllerService } from './services/email-controller.service';
     ProductControllerService,
     TemplateControllerService,
     LoginControllerService,
+    BasketControllerService,
     HistoryControllerService,
     FileControllerService,
     EmailControllerService,

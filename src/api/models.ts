@@ -4,6 +4,7 @@ export { ProductDto } from './models/product-dto';
 export { TemplateDto } from './models/template-dto';
 export { LoginDto } from './models/login-dto';
 export { TokenDto } from './models/token-dto';
+export { BasketDto } from './models/basket-dto';
 export { PageUserDto } from './models/page-user-dto';
 export { PageableObject } from './models/pageable-object';
 export { Sort } from './models/sort';
