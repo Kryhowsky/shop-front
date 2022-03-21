@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ProductDto } from 'src/api/models';
-import { GetProductByIdAction } from '../state/product.actions';
+import { ClearProductAction, GetProductByIdAction } from '../state/product.actions';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.sass']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   productId: number
 
@@ -46,6 +46,10 @@ export class ProductDetailsComponent implements OnInit {
       }
 
     })
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new ClearProductAction());
   }
 
   submit(): void {

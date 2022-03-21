@@ -101,4 +101,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  upload(targetEvent) {
+    const files: FileList = targetEvent.files
+    this.image = files[0]
+  }
+
 }

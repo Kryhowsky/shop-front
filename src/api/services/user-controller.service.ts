@@ -280,6 +280,109 @@ export class UserControllerService extends BaseService {
   }
 
   /**
+   * Path part for operation resetPassword
+   */
+  static readonly ResetPasswordPath = '/api/users/password/reset';
+
+  /**
+   * Allows to reset the password for the user.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `resetPassword()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  resetPassword$Response(params: {
+    token: string;
+    password: string;
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserControllerService.ResetPasswordPath, 'get');
+    if (params) {
+      rb.query('token', params.token, {});
+      rb.query('password', params.password, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Allows to reset the password for the user.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `resetPassword$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  resetPassword(params: {
+    token: string;
+    password: string;
+  }): Observable<void> {
+
+    return this.resetPassword$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation generateResetPasswordToken
+   */
+  static readonly GenerateResetPasswordTokenPath = '/api/users/password/forgot';
+
+  /**
+   * Generates email to reset the password for the user.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `generateResetPasswordToken()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  generateResetPasswordToken$Response(params: {
+    email: string;
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UserControllerService.GenerateResetPasswordTokenPath, 'get');
+    if (params) {
+      rb.query('email', params.email, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Generates email to reset the password for the user.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `generateResetPasswordToken$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  generateResetPasswordToken(params: {
+    email: string;
+  }): Observable<void> {
+
+    return this.generateResetPasswordToken$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
    * Path part for operation getCurrentUser
    */
   static readonly GetCurrentUserPath = '/api/users/current';

@@ -1,4 +1,6 @@
+<input type="file" hidden="true" (change)="upload($event.target)" #fileInput>
+<button mat-raised-button color="primary" (click)="fileInput.click()">Upload File</button>
 <form [formGroup]="formGroup" (ngSubmit)="submit()">
     <formly-form [fields]="formConfig" [form]="formGroup" [model]="(product$ | async)"></formly-form>
-    <button mat-raised-button color="primary" [disabled]="!formGroup.valid">Dodaj</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Dodaj</button>
 </form>
