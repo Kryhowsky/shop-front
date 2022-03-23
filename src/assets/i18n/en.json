@@ -1,0 +1,17 @@
+{
+    "menu": {
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "user": {
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter password"
+    },
+    "form": {
+        "validation": {
+            "emailValid": "Incorrect email address",
+            "required": "This field is required",
+            "passwordMatch": "Passwords not matching"
+        }
+    }
+}

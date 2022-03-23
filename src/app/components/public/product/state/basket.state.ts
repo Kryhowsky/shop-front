@@ -7,10 +7,12 @@ import { AddProductToBasketAction, GetBasketProductsListAction } from './basket.
 
 export class BasketStateModel {
   public basketProducts: ProductDto[]
+  public basketSize: number
 }
 
 const defaults = {
-  basketProducts: []
+  basketProducts: [],
+  basketSize: 0
 };
 
 @State<BasketStateModel>({
@@ -24,16 +26,16 @@ export class BasketState {
 
   @Action(AddProductToBasketAction)
   addProductToBasket({ dispatch }: StateContext<BasketStateModel>, { basketDto }: AddProductToBasketAction) {
-    this.basketService.addProductToBasket({body: basketDto})
-    dispatch(new GetBasketProductsListAction())
+    return this.basketService.addProductToBasket({body: basketDto}).pipe(
+      tap(response => dispatch(new GetBasketProductsListAction()))
+    )
+    
   }
 
   @Action(GetBasketProductsListAction)
   getBaksetProductsList({ patchState }: StateContext<BasketStateModel>) {
     return this.basketService.getBasketProducts().pipe(
-      tap(response => {
-        patchState({basketProducts: response})
-      })
+      tap(response => patchState({basketProducts: response, basketSize: response.length}))
     )
   }
 }

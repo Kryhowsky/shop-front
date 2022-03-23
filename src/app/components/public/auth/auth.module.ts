@@ -11,6 +11,8 @@ import { NgxsModule } from '@ngxs/store';
 import { UserState } from './state/user.state';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
       {
         path: "login",
         component: LoginComponent
+      },
+      {
+        path: "reset-password",
+        component: ResetPasswordComponent
+      },
+      {
+        path: "new-password",
+        component: NewPasswordComponent
       }
     ]
   }
@@ -33,7 +43,9 @@ const routes: Routes = [
   declarations: [
     AuthComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ResetPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     CommonModule,

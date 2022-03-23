@@ -3,8 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ProductDto } from 'src/api/models';
+import { AddProductToBasketAction } from '../state/basket.actions';
 import { ClearProductAction, GetProductByIdAction } from '../state/product.actions';
 
 @Component({
@@ -53,7 +54,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
-    
+    this.store.dispatch(new AddProductToBasketAction({...this.formGroup.value, productId: this.productId}));
   }
 
 }

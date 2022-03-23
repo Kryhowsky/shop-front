@@ -1,0 +1,17 @@
+{
+    "menu": {
+        "login": "Zaloguj",
+        "logout": "Wyloguj"
+    },
+    "user": {
+        "passwordLabel": "Hasło",
+        "passwordPlaceholder": "Wprowadź hasło"
+    },
+    "form": {
+        "validation": {
+            "emailValid": "Niepoprawny adres email",
+            "required": "To pole jest wymagane",
+            "passwordMatch": "Hasła nie są identyczne"
+        }
+    }
+}

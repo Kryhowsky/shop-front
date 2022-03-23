@@ -4,7 +4,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs';
 import { UserDto } from 'src/api/models';
 import { LoginControllerService, UserControllerService } from 'src/api/services';
-import { GetCurrentUserAction, LoginFromLocalStorageAction, LoginUserAction, LogoutUserAction, RegisterUserAction } from './user.actions';
+import { GenerateResetPasswordTokenAction, GetCurrentUserAction, LoginFromLocalStorageAction, LoginUserAction, LogoutUserAction, RegisterUserAction, ResetPasswordAction } from './user.actions';
 
 export class UserStateModel {
   public token: string;
@@ -82,6 +82,20 @@ export class UserState {
   getCurrentUser( { patchState }: StateContext<UserStateModel> ) {
     return this.userService.getCurrentUser().pipe(
       tap(response => patchState({currentUser: response}))
+    )
+  }
+
+  @Action(GenerateResetPasswordTokenAction)
+  generateResetPasswordToken( {dispatch}: StateContext<UserStateModel>, {email}: GenerateResetPasswordTokenAction) {
+    return this.userService.generateResetPasswordToken({email}).pipe(
+      tap(response => dispatch(new Navigate(["/"])))
+    )
+  }
+
+  @Action(ResetPasswordAction)
+  resetPassword( {dispatch}: StateContext<UserStateModel>, {token, password}: ResetPasswordAction) {
+    return this.userService.resetPassword({token, password}).pipe(
+      tap(response => dispatch(new Navigate(["/auth/login"])))
     )
   }
 

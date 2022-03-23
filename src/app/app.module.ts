@@ -13,12 +13,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PublicModule } from './components/public/public.module';
 import { NgxsModule } from '@ngxs/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { AbstractControl } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
+import { FormlyModule, FORMLY_CONFIG } from '@ngx-formly/core';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { PrivateModule } from './components/private/private.module';
+import { MatBadgeModule } from '@angular/material/badge';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 export function minLengthValidationMessages(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -70,6 +75,18 @@ export function emailValidator(control: AbstractControl) {
     MatListModule,
     PublicModule,
     PrivateModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    TranslateModule.forRoot({
+      defaultLanguage: "en",
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     NgxsModule.forRoot(),
     HttpClientModule,
     NgxsRouterPluginModule.forRoot(),
@@ -88,7 +105,38 @@ export function emailValidator(control: AbstractControl) {
   // declarations: [
   //   AppComponent,
   // ],
-  providers: [],
+  providers: [
+    { provide: FORMLY_CONFIG, multi: true, useFactory: formlyValidationConfig, deps: [TranslateService] }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function httpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient)
+}
+
+export function formlyValidationConfig(translateService: TranslateService) {
+  return {
+    validationMessages: [
+      {
+        name: 'required',
+        message() {
+          return translateService.stream('form.validation.required');
+        },
+      },
+      {
+        name: 'emailValid',
+        messge() {
+          return translateService.stream('form.validation.emailValid');
+        }
+      },
+      {
+        name: 'fieldMatch',
+        message() {
+          return translateService.stream('form.validation.passwordMatch');
+        }
+      }
+    ],
+  };
+}

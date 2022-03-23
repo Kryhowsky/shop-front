@@ -24,3 +24,13 @@ export class GetCurrentUserAction {
   static readonly type = '[User] GetCurrentUserAction';
   constructor() {}
 }
+
+export class GenerateResetPasswordTokenAction {
+  static readonly type = '[User] GenerateResetPasswordTokenAction';
+  constructor(public email: string) {}
+}
+
+export class ResetPasswordAction {
+  static readonly type = '[User] ResetPasswordAction';
+  constructor(public token: string, public password: string) {}
+}
