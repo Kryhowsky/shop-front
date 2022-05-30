@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, tap } from 'rxjs';
 import { ProductDto } from 'src/api/models';
@@ -32,11 +33,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         placeholder: "Enter the quantity",
         min: 1,
         required: true
+      },
+      expressionProperties: {
+        "templateOptions.label": this.translateService.stream("product.quantityLabel"),
+        "templateOptions.placeholder": this.translateService.stream("product.quantityPlaceholder"),
       }
     }
   ]
 
-  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute) { }
+  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute, private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

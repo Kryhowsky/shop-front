@@ -1,11 +1,36 @@
 {
     "menu": {
         "login": "Zaloguj",
-        "logout": "Wyloguj"
+        "logout": "Wyloguj",
+        "register": "Zarejestruj",
+        "passwordReset": "Zresetuj hasło",
+        "products": "Produkty",
+        "basket": "Koszyk",
+        "language": "Wybierz język"
     },
     "user": {
         "passwordLabel": "Hasło",
-        "passwordPlaceholder": "Wprowadź hasło"
+        "passwordPlaceholder": "Wprowadź hasło",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Wprowadź adres email",
+        "firstNameLabel": "Imię",
+        "firstNamePlaceholder": "Wprowadź imię",
+        "lastNameLabel": "Nazwisko",
+        "lastNamePlaceholder": "Wprowadź nazwisko",
+        "confirmPasswordLabel": "Potwierdź hasło",
+        "confirmPasswordPlaceholder": "Powtórz hasło"
+    },
+    "product": {
+        "brandLabel": "Marka",
+        "brandPlaceholder": "Wprowadź markę produktu",
+        "nameLabel": "Nazwa",
+        "namePlaceholder": "Wprowadź nazwę produktu",
+        "descriptionLabel": "Opis",
+        "descriptionPlaceholder": "Wprowadź opis produktu",
+        "priceLabel": "Cena",
+        "quantityLabel": "Ilość",
+        "viewProduct": "Zobacz produkt",
+        "itemsPerPage": "Liczba produktów na stronie"
     },
     "form": {
         "validation": {

@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
         label: "Email",
         placeholder: "Enter email address",
         required: true
+      },
+      expressionProperties: {
+        "templateOptions.label": this.translateService.stream("user.emailLabel"),
+        "templateOptions.placeholder": this.translateService.stream("user.emailPlaceholder"),
       }
     },
     {

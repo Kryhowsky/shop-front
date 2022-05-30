@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { RegisterUserAction } from '../state/user.actions';
 
@@ -28,6 +29,10 @@ export class RegisterComponent implements OnInit {
           label: "First Name",
           placeholder: "Enter first name",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.firstNameLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.firstNamePlaceholder"),
         }
       },
       {
@@ -37,6 +42,10 @@ export class RegisterComponent implements OnInit {
           label: "Last Name",
           placeholder: "Enter last name",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.lastNameLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.lastNamePlaceholder"),
         }
       },
       {
@@ -46,6 +55,10 @@ export class RegisterComponent implements OnInit {
           label: "Email",
           placeholder: "Enter email address",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.emailLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.emailPlaceholder"),
         }
       },
       {
@@ -57,6 +70,10 @@ export class RegisterComponent implements OnInit {
           type: "password",
           required: true,
           minLength: 5
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.passwordLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.passwordPlaceholder"),
         }
       },
       {
@@ -67,12 +84,16 @@ export class RegisterComponent implements OnInit {
           placeholder: "Repeat password",
           type: "password",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.confirmPasswordLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.confirmPasswordPlaceholder"),
         }
       }
     ]
   }]
 
-  constructor(private readonly store: Store) { }
+  constructor(private readonly store: Store, private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
   }

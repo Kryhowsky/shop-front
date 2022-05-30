@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { GenerateResetPasswordTokenAction } from '../state/user.actions';
 
@@ -27,12 +28,16 @@ export class ResetPasswordComponent implements OnInit {
           label: "Email",
           placeholder: "Enter email address",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.emailLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.emailPlaceholder"),
         }
       }
     ]
   }]
 
-  constructor(private readonly store: Store) { }
+  constructor(private readonly store: Store, private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
   }

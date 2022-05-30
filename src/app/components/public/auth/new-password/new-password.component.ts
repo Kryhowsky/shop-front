@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { ResetPasswordAction } from '../state/user.actions';
 
@@ -32,6 +33,10 @@ export class NewPasswordComponent implements OnInit {
           type: "password",
           required: true,
           minLength: 5
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.passwordLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.passwordPlaceholder"),
         }
       },
       {
@@ -42,12 +47,16 @@ export class NewPasswordComponent implements OnInit {
           placeholder: "Repeat password",
           type: "password",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("user.confirmPasswordLabel"),
+          "templateOptions.placeholder": this.translateService.stream("user.confirmPasswordPlaceholder"),
         }
       }
     ]
   }]
 
-  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute) { }
+  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute, private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
     // this.token = this.activatedRoute.params["token"]

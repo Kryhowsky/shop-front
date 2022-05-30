@@ -24,6 +24,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { ApiModule } from 'src/api/api.module';
+import { environment } from 'src/environments/environment';
 
 export function minLengthValidationMessages(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -75,6 +77,9 @@ export function emailValidator(control: AbstractControl) {
     MatListModule,
     PublicModule,
     PrivateModule,
+    ApiModule.forRoot({
+      rootUrl: environment.backendUrl
+    }),
     MatBadgeModule,
     MatIconModule,
     MatFormFieldModule,

@@ -1,11 +1,36 @@
 {
     "menu": {
         "login": "Login",
-        "logout": "Logout"
+        "logout": "Logout",
+        "register": "Register",
+        "passwordReset": "Reset Password",
+        "products": "Products",
+        "basket": "Basket",
+        "language": "Select language"
     },
     "user": {
         "passwordLabel": "Password",
-        "passwordPlaceholder": "Enter password"
+        "passwordPlaceholder": "Enter password",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter email address",
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "Enter first name",
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Enter last name",
+        "confirmPasswordLabel": "Confirm Password",
+        "confirmPasswordPlaceholder": "Repeat password"
+    },
+    "product": {
+        "brandLabel": "Brand",
+        "brandPlaceholder": "Enter brand for the product",
+        "nameLabel": "Name",
+        "namePlaceholder": "Enter name for the product",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Enter description for the product",
+        "priceLabel": "Price",
+        "quantityLabel": "Quantity",
+        "viewProduct": "View Product",
+        "itemsPerPage": "Items per page"
     },
     "form": {
         "validation": {

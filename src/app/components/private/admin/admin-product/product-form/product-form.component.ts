@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ProductDto } from 'src/api/models';
@@ -28,6 +29,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           label: "Brand",
           placeholder: "Enter brand for the product",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("product.brandLabel"),
+          "templateOptions.placeholder": this.translateService.stream("product.brandPlaceholder"),
         }
       },
       {
@@ -37,6 +42,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           label: "Name",
           placeholder: "Enter name for the product",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("product.nameLabel"),
+          "templateOptions.placeholder": this.translateService.stream("product.namePlaceholder"),
         }
       },
       {
@@ -47,6 +56,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           placeholder: "Enter description for the product",
           type: "textarea",
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("product.descriptionLabel"),
+          "templateOptions.placeholder": this.translateService.stream("product.descriptionPlaceholder"),
         }
       },
       {
@@ -58,6 +71,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           type: "number",
           min: 0,
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("product.priceLabel")
         }
       },
       {
@@ -69,6 +85,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           type: "number",
           min: 0,
           required: true
+        },
+        expressionProperties: {
+          "templateOptions.label": this.translateService.stream("product.quantityLabel")
         }
       }
     ]
@@ -77,7 +96,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   @Select(state => state.product.product)
   product$: Observable<ProductDto>
 
-  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute) { }
+  constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute, private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

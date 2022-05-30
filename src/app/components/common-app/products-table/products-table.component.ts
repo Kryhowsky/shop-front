@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { PageProductDto, ProductDto } from 'src/api/models';
